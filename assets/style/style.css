@@ -1,0 +1,35 @@
+
+
+.box {
+    background-color:#573B0C;
+    color: green;
+    border-radius: 5px;
+    padding: 20px;
+    font-size: 150%;
+    border: black 1px solid;
+  }
+  
+  .wrapper {
+    width: 600px;
+    display: grid;
+    grid-gap: 10px;
+    margin: auto;
+    grid-template-rows: repeat(5, 100px);
+    grid-template-columns: repeat(5, 100px);
+    grid-auto-flow: row;
+  }
+
+  #plantSelection{
+ 
+      text-align: center;
+      margin: auto;
+      width: 700px;
+  }
+
+  .plants{
+      float: left;
+      border: 1px solid black;
+      padding: 5px;
+      margin: 5px;
+
+  }
