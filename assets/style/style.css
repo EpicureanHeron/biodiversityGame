@@ -13,6 +13,9 @@
     border: green 1px solid;
     font-size: 200%;
 }
+.infection {
+    border: 5px black solid;
+}
   
   .wrapper {
     
