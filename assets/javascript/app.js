@@ -78,6 +78,42 @@ function infection(passedTurn) {
        
         $(activePlot).removeClass($(activePlot).attr('data'))
         $(activePlot).addClass('infected')
+        $(activePlot).attr('infected', 'true')
+        spread($(activePlot).attr('id'))
     }
+
+}
+
+function spread(infectedDivID) {
+    xMax = 5
+    yMax = 5
+    xMin = 1
+    yMin = 1
+    infectedDivname = '#' + infectedDivID
+    xValueOfInfected = $(infectedDivname).attr('x')
+    yValueOfInfected = $(infectedDivname).attr('y')
+// logic bad Headers, i think the recurssive nature forces it to skip the last few
+//yeah, the recurssive function actually only triggers off the first true,
+//so it really could be a list that we are adding the positive hits to, which then we go through and process
+
+for (i = -1; i < 2; i++) {
+       yValueofadjacent = parseInt(yValueOfInfected) + i 
+       for (j = -1; j < 2; j++){
+        
+        xValueofAdjacent = parseInt(xValueOfInfected) + j
+        attributeLookUp = '[x=' + xValueofAdjacent + '][y=' + yValueofadjacent +']'
+        console.log(attributeLookUp)
+        console.log($(attributeLookUp).attr('id'))
+        console.log($(infectedDivname).attr('id'))
+        if( $(attributeLookUp).attr('data') === $(infectedDivname).attr('data') && $(attributeLookUp).attr('infected') === 'false'){
+            $(attributeLookUp).removeClass($(infectedDivname).attr('data'))
+            $(attributeLookUp).addClass('infected')
+            $(attributeLookUp).attr('infected', 'true')
+            spread($(attributeLookUp).attr('id'))
+        }
+
+       }
+      }
+    
 
 }
