@@ -13,7 +13,7 @@
     border: green 1px solid;
     font-size: 200%;
 }
-.infection {
+.active {
     border: 5px black solid;
 }
   
@@ -71,4 +71,9 @@
   .eggplants {
       background-color: purple;
       color: black;
+  }
+
+  .infected {
+      background-color: black;
+      color: yellow;
   }
