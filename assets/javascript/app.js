@@ -23,7 +23,7 @@ $(document).ready(function () {
         planted = $(this).attr('data');
         console.log(box)
         console.log(planted)
-        if ($(this).attr('data') === 'none') {
+        if ($(this).attr('data') === 'none' && (lastPlantClicked !== '')) {
             $(this).attr('data', lastPlantClicked)
             $(this).addClass(lastPlantClicked)
             $('#lastSelected').html(lastPlantClicked)
