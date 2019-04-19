@@ -5,11 +5,17 @@
     color: green;
     border-radius: 5px;
     padding: 20px;
-    font-size: 150%;
+    font-size: 180%;
     border: black 1px solid;
   }
+
+.box:hover{
+    border: green 1px solid;
+    font-size: 200%;
+}
   
   .wrapper {
+    
     width: 600px;
     display: grid;
     grid-gap: 10px;
@@ -21,19 +27,23 @@
 
   #plantSelection{
  
-      text-align: center;
-      margin: auto;
-      width: 700px;
+      width: 600px;
+      margin: auto; 
+      margin-top: 10px;
+
+
   }
 
   .plants{
-      float: left;
-      border: 1px solid black;
-      padding: 5px;
-      margin: 5px;
+      margin-left: 16px;
+      margin-top: 20px;
 
   }
 
+  .btn-custom {
+      background-color: purple;
+      color: white;
+  }
   .tomatoes{
       background-color: red;
       color: black;
