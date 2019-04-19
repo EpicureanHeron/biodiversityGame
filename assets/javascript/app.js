@@ -13,6 +13,8 @@ $(document).ready(function() {
         console.log(planted)
         if($(this).attr('data') === 'none'){
             $(this).attr('data', lastPlantClicked) 
+            $(this).addClass(lastPlantClicked)
+
         }
 
 

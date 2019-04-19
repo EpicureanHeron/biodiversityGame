@@ -33,3 +33,29 @@
       margin: 5px;
 
   }
+
+  .tomatoes{
+      background-color: red;
+      color: black;
+
+  }
+
+  .corn{
+      background-color: yellow;
+      color: black;
+  }
+
+  .lettuce {
+      background-color: green;
+      color: black;
+  }
+
+  .blueberries {
+      background-color: blue;
+      color: black;
+  }
+
+  .eggplants {
+      background-color: purple;
+      color: black;
+  }
