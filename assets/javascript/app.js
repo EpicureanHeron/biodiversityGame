@@ -36,6 +36,7 @@ $(document).ready(function () {
             if (plantCounter >= 25) {
                 gameState = 'infecting'
                 $('#plantSelection').empty()
+                $('#plantSelection2').empty()
                 let nextTurnButton = $('<button>')
                 nextTurnButton.attr('type', 'button')
                 nextTurnButton.attr('id', 'infectionBtn')

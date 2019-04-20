@@ -22,63 +22,82 @@
 <body>
 
   <div class="jumbotron">
-    <h1>Hello, world!</h1>
+    <h1>Biodiversity is Awesome!</h1>
     <p>...</p>
-    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+
   </div>
 
-  
+
   <div class='row'>
     <div class="col-md-2"></div>
     <div class='col-md-4'>
-      <h2 id='lastSelected'></h2>
+      <h4 id='lastSelected'></h4>
     </div>
 
-  <div class='col-md-4' id='infectionStatus'>
-    <h2 id='diceRoll'></h2>
+    <div class='col-md-4' id='infectionStatus'>
+      <h4 id='diceRoll'></h4>
+    </div>
+    <div class='col-md-2'></div>
   </div>
-  <div class='col-md-2'></div>
-</div>
 
-<div id="plantSelection">
-    <button type="button" class="btn btn-danger plants" id='tomatoes'>Tomatoes</button>
-    <button type="button" class="btn btn-warning plants" id='corn'>Corn</button>
-    <button type="button" class="btn btn-success plants" id='lettuce'>Lettuce</button>
-    <button type="button" class="btn btn-primary plants" id='blueberries'>Blueberries</button>
-    <button type="button" class="btn btn-custom plants" id='eggplants'>Eggplants</button>
+  <div class='row'>
+    <div class="col-md-2"></div>
+    <div class='col-md-8'>
+      <div id="plantSelection">
+        <button type="button" class="btn btn-danger plants" id='tomatoes'>Tomatoes</button>
+        <button type="button" class="btn btn-warning plants" id='corn'>Corn</button>
+        <button type="button" class="btn btn-success plants" id='lettuce'>Lettuce</button>
+       
 
+      </div>
+    </div>
+    <div class="col-md-2"></div>
   </div>
-  <div class="wrapper">
+  <div class='row'>
+      <div class="col-md-2"></div>
+      <div class='col-md-8'>
+          <div id="plantSelection2">
+  <button type="button" class="btn btn-primary plants" id='blueberries'>Blueberries</button>
+  <button type="button" class="btn btn-custom plants" id='eggplants'>Eggplants</button>
+  </div>
+  <div class="col-md-2"></div>
+  <div class='row'>
+    <div class="col-md-2"></div>
+    <div class='col-md-8'>
+      <div class="wrapper">
 
 
-    <!-- this could all be generated programatically with a couple of for loops and jquery -->
-    <!-- added benefit, it could scale up potentially -->
-    <div id='plot1' x='1' y='5' infected='false' data='none' class="box box1">1</div>
-    <div id='plot2' x='2' y='5' infected='false' data='none' class="box box1">2</div>
-    <div id='plot3' x='3' y='5' infected='false' data='none' class="box box1">3</div>
-    <div id='plot4' x='4' y='5' infected='false' data='none' class="box box1">4</div>
-    <div id='plot5' x='5' y='5' infected='false' data='none' class="box box1">5</div>
-    <div id='plot6' x='1' y='4' infected='false' data='none' class="box box1">6</div>
-    <div id='plot7' x='2' y='4' infected='false' data='none' class="box box1">7</div>
-    <div id='plot8' x='3' y='4' infected='false' data='none' class="box box1">8</div>
-    <div id='plot9' x='4' y='4' infected='false' data='none' class="box box1">9</div>
-    <div id='plot10' x='5' y='4' infected='false' data='none' class="box box1">10</div>
-    <div id='plot11' x='1' y='3' infected='false' data='none' class="box box1">11</div>
-    <div id='plot12' x='2' y='3' infected='false' data='none' class="box box1">12</div>
-    <div id='plot13' x='3' y='3' infected='false' data='none' class="box box1">13</div>
-    <div id='plot14' x='4' y='3' infected='false' data='none' class="box box1">14</div>
-    <div id='plot15' x='5' y='3' infected='false' data='none' class="box box1">15</div>
-    <div id='plot16' x='1' y='2' infected='false' data='none' class="box box1">16</div>
-    <div id='plot17' x='2' y='2' infected='false' data='none' class="box box1">17</div>
-    <div id='plot18' x='3' y='2' infected='false' data='none' class="box box1">18</div>
-    <div id='plot19' x='4' y='2' infected='false' data='none' class="box box1">19</div>
-    <div id='plot20' x='5' y='2' infected='false' data='none' class="box box1">20</div>
-    <div id='plot21' x='1' y='1' infected='false' data='none' class="box box1">21</div>
-    <div id='plot22' x='2' y='1' infected='false' data='none' class="box box1">22</div>
-    <div id='plot23' x='3' y='1' infected='false' data='none' class="box box1">23</div>
-    <div id='plot24' x='4' y='1' infected='false' data='none' class="box box1">24</div>
-    <div id='plot25' x='5' y='1' infected='false' data='none' class="box box1">25</div>
+        <!-- this could all be generated programatically with a couple of for loops and jquery -->
+        <!-- added benefit, it could scale up potentially -->
+        <div id='plot1' x='1' y='5' infected='false' data='none' class="box box1">1</div>
+        <div id='plot2' x='2' y='5' infected='false' data='none' class="box box1">2</div>
+        <div id='plot3' x='3' y='5' infected='false' data='none' class="box box1">3</div>
+        <div id='plot4' x='4' y='5' infected='false' data='none' class="box box1">4</div>
+        <div id='plot5' x='5' y='5' infected='false' data='none' class="box box1">5</div>
+        <div id='plot6' x='1' y='4' infected='false' data='none' class="box box1">6</div>
+        <div id='plot7' x='2' y='4' infected='false' data='none' class="box box1">7</div>
+        <div id='plot8' x='3' y='4' infected='false' data='none' class="box box1">8</div>
+        <div id='plot9' x='4' y='4' infected='false' data='none' class="box box1">9</div>
+        <div id='plot10' x='5' y='4' infected='false' data='none' class="box box1">10</div>
+        <div id='plot11' x='1' y='3' infected='false' data='none' class="box box1">11</div>
+        <div id='plot12' x='2' y='3' infected='false' data='none' class="box box1">12</div>
+        <div id='plot13' x='3' y='3' infected='false' data='none' class="box box1">13</div>
+        <div id='plot14' x='4' y='3' infected='false' data='none' class="box box1">14</div>
+        <div id='plot15' x='5' y='3' infected='false' data='none' class="box box1">15</div>
+        <div id='plot16' x='1' y='2' infected='false' data='none' class="box box1">16</div>
+        <div id='plot17' x='2' y='2' infected='false' data='none' class="box box1">17</div>
+        <div id='plot18' x='3' y='2' infected='false' data='none' class="box box1">18</div>
+        <div id='plot19' x='4' y='2' infected='false' data='none' class="box box1">19</div>
+        <div id='plot20' x='5' y='2' infected='false' data='none' class="box box1">20</div>
+        <div id='plot21' x='1' y='1' infected='false' data='none' class="box box1">21</div>
+        <div id='plot22' x='2' y='1' infected='false' data='none' class="box box1">22</div>
+        <div id='plot23' x='3' y='1' infected='false' data='none' class="box box1">23</div>
+        <div id='plot24' x='4' y='1' infected='false' data='none' class="box box1">24</div>
+        <div id='plot25' x='5' y='1' infected='false' data='none' class="box box1">25</div>
 
+      </div>
+    </div>
+    <div class="col-md-2"></div>
   </div>
 
 
