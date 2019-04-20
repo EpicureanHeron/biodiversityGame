@@ -88,22 +88,29 @@ function spread(infectedDivID) {
  
    
     
-    listOfhits = []
+    let listOfhits = []
+    
     listOfhits.push(infectedDivID)
     // logic bad Headers, i think the recurssive nature forces it to skip the last few
     //yeah, the recurssive function actually only triggers off the first true,
     //so it really could be a list that we are adding the positive hits to, which then we go through and process
     //could be a while loop, or nested method to handle the spread
     for (h = 0; h < listOfhits.length; h++) {
-        infectedDivname = + '#' + listOfhits[0]
-        xValueOfInfected = $(infectedDivname).attr('x')
-        yValueOfInfected = $(infectedDivname).attr('y')
+
+        let infectedDivname = '#' + listOfhits[h]
+        console.log('--------------------------test0---------------')
+        console.log(infectedDivname)
+        console.log('--------------------------test0---------------')
+
+
+       let xValueOfInfected = $(infectedDivname).attr('x')
+       let  yValueOfInfected = $(infectedDivname).attr('y')
         for (i = -1; i < 2; i++) {
-            yValueofadjacent = parseInt(yValueOfInfected) + i
+            let yValueofadjacent = parseInt(yValueOfInfected) + i
             for (j = -1; j < 2; j++) {
 
-                xValueofAdjacent = parseInt(xValueOfInfected) + j
-                attributeLookUp = '[x=' + xValueofAdjacent + '][y=' + yValueofadjacent + ']'
+                let xValueofAdjacent = parseInt(xValueOfInfected) + j
+                let attributeLookUp = '[x=' + xValueofAdjacent + '][y=' + yValueofadjacent + ']'
                 console.log(attributeLookUp)
                 console.log($(attributeLookUp).attr('id'))
                 console.log($(infectedDivname).attr('id'))
