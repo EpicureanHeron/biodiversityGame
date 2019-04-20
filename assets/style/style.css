@@ -26,13 +26,17 @@
     grid-template-rows: repeat(5, 100px);
     grid-template-columns: repeat(5, 100px);
     grid-auto-flow: row;
+    margin-bottom: 100px;
   }
 
   #plantSelection{
  
-      width: 600px;
+      width: 550px;
+      margin-left: 40px;
       margin: auto; 
       margin-top: 10px;
+      margin-bottom: 30px;
+      /* background-color: #573B0C; */
 
 
   }

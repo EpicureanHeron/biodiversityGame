@@ -16,7 +16,7 @@ $(document).ready(function () {
     $('body').on('click', '.plants', function () {
         lastPlantClicked = $(this).attr('id');
 
-        $('#lastSelected').html(lastPlantClicked);
+        $('#lastSelected').html('Active Crop: ' + lastPlantClicked);
     })
 
     //updates state of plot
@@ -28,21 +28,21 @@ $(document).ready(function () {
         if ($(this).attr('data') === 'none' && (lastPlantClicked !== '')) {
             $(this).attr('data', lastPlantClicked)
             $(this).addClass(lastPlantClicked)
-            $('#lastSelected').html(lastPlantClicked)
+          //  $('#lastSelected').html(lastPlantClicked)
             plantCounter += 1
 
             // after all plots are filled, create the infection button
             //and add it to the screen
             if (plantCounter >= 25) {
                 gameState = 'infecting'
-
+                $('#plantSelection').empty()
                 let nextTurnButton = $('<button>')
                 nextTurnButton.attr('type', 'button')
                 nextTurnButton.attr('id', 'infectionBtn')
                 nextTurnButton.addClass('btn')
                 nextTurnButton.addClass('btn-primary')
                 nextTurnButton.html('Infect!')
-                $('#infectionStatus').append(nextTurnButton)
+                $('#plantSelection').append(nextTurnButton)
             }
         }
     })
@@ -63,11 +63,13 @@ function infection(passedTurn) {
     //dice roll logic, grabs the veggie type in the mapping established outside of this function
 
     var rand = 1 + Math.floor(Math.random() * 6);
-    $('#diceRoll').html(mapping[rand])
+    $('#diceRoll').html('Infection: ' + mapping[rand])
+
     state = activePerimeterPlot + passedTurn
     //logic to go around the perimeter, this is hardcoded in the perimeterPlot list
     //but probably could be done dynamically if I was more clever
     activePlot = '#plot' + perimeterPlots[state]
+    $('#lastSelected').html('Active Plot: ' + $(activePlot).attr('data'))
     // removes the active marker from the last plot
     if (passedTurn > 0) {
         lastPlot = '#plot' + perimeterPlots[state - 1]
