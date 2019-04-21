@@ -15,12 +15,14 @@ $(document).ready(function () {
     //updates plant
     $('body').on('click', '.plants', function () {
         lastPlantClicked = $(this).attr('id');
+        $('#turnCounter').empty()
 
-        $('#lastSelected').html('Active Crop: ' + lastPlantClicked);
+        $('#lastSelected').html('You are planting ' + lastPlantClicked + '.');
     })
 
     //updates state of plot
     $('body').on('click', '.box', function () {
+       
         let box = $(this).attr('id');
         let planted = $(this).attr('data');
         console.log(box)
@@ -34,9 +36,11 @@ $(document).ready(function () {
             // after all plots are filled, create the infection button
             //and add it to the screen
             if (plantCounter >= 25) {
+
                 gameState = 'infecting'
                 $('#plantSelection').empty()
                 $('#plantSelection2').empty()
+                $('#lastSelected').html('Selected the Infected button to start the next stage!')
                 let nextTurnButton = $('<button>')
                 nextTurnButton.attr('type', 'button')
                 nextTurnButton.attr('id', 'infectionBtn')
@@ -50,10 +54,18 @@ $(document).ready(function () {
 
     //logic for the infectionBtn
     $('body').on('click', '#infectionBtn', function () {
+        
+        humanTurn = turn + 1
+        $('#turnCounter').html('Turn: ' + humanTurn)
         var rand = 1 + Math.floor(Math.random() * 6);
         $('#diceRoll').html(rand)
 
         infection(turn)
+        console.log(turn)
+        if(turn === 16){
+           
+            endGame()
+        }
 
     })
 
@@ -64,7 +76,7 @@ function infection(passedTurn) {
     //dice roll logic, grabs the veggie type in the mapping established outside of this function
 
     var rand = 1 + Math.floor(Math.random() * 6);
-    $('#diceRoll').html('Infection: ' + mapping[rand])
+    $('#diceRoll').html('The ' + mapping[rand] + ' virus tries to infect this plot!')
 
     state = activePerimeterPlot + passedTurn
     //logic to go around the perimeter, this is hardcoded in the perimeterPlot list
@@ -128,4 +140,19 @@ function spread(infectedDivID) {
             }
         }
     }
+}
+
+function endGame(){
+    $('#plantSelection').empty()
+   let  points = 0
+    for (i = 1; i < 26; i++) {
+        let plot = '#plot' + i
+
+        if($(plot).attr('infected') === 'false') {
+            points += 1
+        }
+
+    }
+    $('#turnCounter').html("your final score: " + points)
+    
 }
