@@ -20,7 +20,7 @@
   
   .wrapper {
     /* border: black 1px solid; */
-    width: 90%;
+    width: 100%;
     display: grid;
     grid-gap: 10px;
     margin: auto;
@@ -29,6 +29,7 @@
     grid-template-columns: repeat(5, 80px);
     grid-auto-flow: row;
     margin-bottom: 100px;
+    margin-left: 15%;
   }
 
   #plantSelection{
