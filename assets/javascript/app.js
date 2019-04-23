@@ -9,7 +9,7 @@ let gameState = 'planting'
 $(document).ready(function () {
 
     let lastPlantClicked = ''
-    let plantCounter = 0
+   
 
 
     //updates plant
@@ -22,33 +22,49 @@ $(document).ready(function () {
 
     //updates state of plot
     $('body').on('click', '.box', function () {
-       
+        let plantCounter = 0
         let box = $(this).attr('id');
         let planted = $(this).attr('data');
         console.log(box)
         console.log(planted)
-        if ($(this).attr('data') === 'none' && (lastPlantClicked !== '')) {
+       // if ($(this).attr('data') === 'none' && (lastPlantClicked !== '')) {
+        if (lastPlantClicked !== '') {
+            if ($(this).attr('data') !== 'none'){
+                $(this).removeClass($(this).attr('data'))
+            }
             $(this).attr('data', lastPlantClicked)
+           
             $(this).addClass(lastPlantClicked)
           //  $('#lastSelected').html(lastPlantClicked)
-            plantCounter += 1
+            
 
             // after all plots are filled, create the infection button
             //and add it to the screen
-            if (plantCounter >= 25) {
+            
+            for (i=1; i < 26; i++) {
+                let plotToCheck = '#plot' + i
+                if($(plotToCheck).attr('data') !== 'none'){
+                    plantCounter += 1
+                }
 
-                gameState = 'infecting'
-                $('#plantSelection').empty()
-                $('#plantSelection2').empty()
-                $('#lastSelected').html('Selected the Infected button to start the next stage!')
-                let nextTurnButton = $('<button>')
-                nextTurnButton.attr('type', 'button')
-                nextTurnButton.attr('id', 'infectionBtn')
-                nextTurnButton.addClass('btn')
-                nextTurnButton.addClass('btn-primary')
-                nextTurnButton.html('Infect!')
-                $('#plantSelection').append(nextTurnButton)
+                if (plantCounter === 25) {
+
+                    gameState = 'infecting'
+                    $('#plantSelection').empty()
+                    $('#plantSelection2').empty()
+                    $('#lastSelected').html('Selected the Infected button to start the next stage!')
+                    let nextTurnButton = $('<button>')
+                    nextTurnButton.attr('type', 'button')
+                    nextTurnButton.attr('id', 'infectionBtn')
+                    nextTurnButton.addClass('btn')
+                    nextTurnButton.addClass('btn-primary')
+                    nextTurnButton.html('Infect!')
+                    $('#plantSelection').append(nextTurnButton)
+                }
+                
+
             }
+          
         }
     })
 
@@ -68,6 +84,24 @@ $(document).ready(function () {
         }
 
     })
+
+        //this is not working
+
+    $('body').on('click', '#replay'), function () {
+        console.log('this worked!')
+        for (i=1; i < 26; i++) {
+
+            let plot = '#plot' + i
+            $(plot).removeClass($(plot).attr('data'))
+            $(plot).attr('data', 'none') 
+            $(plot).attr('infected', 'false') 
+            }
+        
+        turn = 0
+        activePerimeterPlot = 0
+        gameState = 'planting'
+
+    }
 
 })
 
@@ -154,5 +188,19 @@ function endGame(){
 
     }
     $('#turnCounter').html("your final score: " + points)
+    $('#plantSelection').empty()
+
+        //this is not working
+        //see line 88 as well
+
+    let replay =  $('<button>')
+    replay.addClass('btn')
+    replay.addClass('btn-primary')
+    replay.attr('id', 'replayBtn')
+    replay.attr('type', 'button')
+    replay.html('Replay?')
+    $('#plantSelection').append(replay)
+
+
     
 }
