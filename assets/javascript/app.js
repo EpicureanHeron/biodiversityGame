@@ -87,11 +87,14 @@ $(document).ready(function () {
 
         //this is not working
 
-    $('body').on('click', '#replay'), function () {
+    $('body').on('click', '#replayBtn', function () {
         console.log('this worked!')
         for (i=1; i < 26; i++) {
 
             let plot = '#plot' + i
+            if($(plot).attr('infected') === 'true') {
+                $(plot).removeClass('infected')
+            }
             $(plot).removeClass($(plot).attr('data'))
             $(plot).attr('data', 'none') 
             $(plot).attr('infected', 'false') 
@@ -101,7 +104,7 @@ $(document).ready(function () {
         activePerimeterPlot = 0
         gameState = 'planting'
 
-    }
+    })
 
 })
 
