@@ -23,7 +23,7 @@
 
   <div class="jumbotron">
     <h1>Biodiversity is Awesome!</h1>
-   
+
   </div>
 
   <div class='row'>
@@ -56,67 +56,96 @@
         <button type="button" class="btn btn-danger plants" id='tomatoes'>Tomatoes</button>
         <button type="button" class="btn btn-warning plants" id='corn'>Corn</button>
         <button type="button" class="btn btn-success plants" id='lettuce'>Lettuce</button>
-       
+
 
       </div>
     </div>
     <div class="col-md-2"></div>
   </div>
-  <div class='row'>
-      <div class="col-md-2"></div>
-      <div class='col-md-8'>
-          <div id="plantSelection2">
-  <button type="button" class="btn btn-primary plants" id='blueberries'>Blueberries</button>
-  <button type="button" class="btn btn-custom plants" id='eggplants'>Eggplants</button>
-  </div>
-  <div class="col-md-2"></div>
   <div class='row'>
     <div class="col-md-2"></div>
     <div class='col-md-8'>
-      <div class="wrapper">
-
-
-        <!-- this could all be generated programatically with a couple of for loops and jquery -->
-        <!-- added benefit, it could scale up potentially -->
-        <div id='plot1' x='1' y='5' infected='false' data='none' class="box box1">1</div>
-        <div id='plot2' x='2' y='5' infected='false' data='none' class="box box1">2</div>
-        <div id='plot3' x='3' y='5' infected='false' data='none' class="box box1">3</div>
-        <div id='plot4' x='4' y='5' infected='false' data='none' class="box box1">4</div>
-        <div id='plot5' x='5' y='5' infected='false' data='none' class="box box1">5</div>
-        <div id='plot6' x='1' y='4' infected='false' data='none' class="box box1">6</div>
-        <div id='plot7' x='2' y='4' infected='false' data='none' class="box box1">7</div>
-        <div id='plot8' x='3' y='4' infected='false' data='none' class="box box1">8</div>
-        <div id='plot9' x='4' y='4' infected='false' data='none' class="box box1">9</div>
-        <div id='plot10' x='5' y='4' infected='false' data='none' class="box box1">10</div>
-        <div id='plot11' x='1' y='3' infected='false' data='none' class="box box1">11</div>
-        <div id='plot12' x='2' y='3' infected='false' data='none' class="box box1">12</div>
-        <div id='plot13' x='3' y='3' infected='false' data='none' class="box box1">13</div>
-        <div id='plot14' x='4' y='3' infected='false' data='none' class="box box1">14</div>
-        <div id='plot15' x='5' y='3' infected='false' data='none' class="box box1">15</div>
-        <div id='plot16' x='1' y='2' infected='false' data='none' class="box box1">16</div>
-        <div id='plot17' x='2' y='2' infected='false' data='none' class="box box1">17</div>
-        <div id='plot18' x='3' y='2' infected='false' data='none' class="box box1">18</div>
-        <div id='plot19' x='4' y='2' infected='false' data='none' class="box box1">19</div>
-        <div id='plot20' x='5' y='2' infected='false' data='none' class="box box1">20</div>
-        <div id='plot21' x='1' y='1' infected='false' data='none' class="box box1">21</div>
-        <div id='plot22' x='2' y='1' infected='false' data='none' class="box box1">22</div>
-        <div id='plot23' x='3' y='1' infected='false' data='none' class="box box1">23</div>
-        <div id='plot24' x='4' y='1' infected='false' data='none' class="box box1">24</div>
-        <div id='plot25' x='5' y='1' infected='false' data='none' class="box box1">25</div>
+      <div id="plantSelection2">
+        <button type="button" class="btn btn-primary plants" id='blueberries'>Blueberries</button>
+        <button type="button" class="btn btn-custom plants" id='eggplants'>Eggplants</button>
+        <button type="button" class="btn plants till" id='till'>Till</button>
 
       </div>
-    </div>
-    <div class="col-md-2"></div>
-  </div>
+      <div class="col-md-2"></div>
+      <div class='row'>
+        <div class="col-md-2"></div>
+        <div class='col-md-8'>
+          <div class="wrapper">
 
 
-  <!-- these should be buttons -->
+            <!-- this could all be generated programatically with a couple of for loops and jquery -->
+            <!-- added benefit, it could scale up potentially -->
+            <div id='plot1' x='1' y='5' infected='false' data='none' class="box box1">1</div>
+            <div id='plot2' x='2' y='5' infected='false' data='none' class="box box1">2</div>
+            <div id='plot3' x='3' y='5' infected='false' data='none' class="box box1">3</div>
+            <div id='plot4' x='4' y='5' infected='false' data='none' class="box box1">4</div>
+            <div id='plot5' x='5' y='5' infected='false' data='none' class="box box1">5</div>
+            <div id='plot6' x='1' y='4' infected='false' data='none' class="box box1">6</div>
+            <div id='plot7' x='2' y='4' infected='false' data='none' class="box box1">7</div>
+            <div id='plot8' x='3' y='4' infected='false' data='none' class="box box1">8</div>
+            <div id='plot9' x='4' y='4' infected='false' data='none' class="box box1">9</div>
+            <div id='plot10' x='5' y='4' infected='false' data='none' class="box box1">10</div>
+            <div id='plot11' x='1' y='3' infected='false' data='none' class="box box1">11</div>
+            <div id='plot12' x='2' y='3' infected='false' data='none' class="box box1">12</div>
+            <div id='plot13' x='3' y='3' infected='false' data='none' class="box box1">13</div>
+            <div id='plot14' x='4' y='3' infected='false' data='none' class="box box1">14</div>
+            <div id='plot15' x='5' y='3' infected='false' data='none' class="box box1">15</div>
+            <div id='plot16' x='1' y='2' infected='false' data='none' class="box box1">16</div>
+            <div id='plot17' x='2' y='2' infected='false' data='none' class="box box1">17</div>
+            <div id='plot18' x='3' y='2' infected='false' data='none' class="box box1">18</div>
+            <div id='plot19' x='4' y='2' infected='false' data='none' class="box box1">19</div>
+            <div id='plot20' x='5' y='2' infected='false' data='none' class="box box1">20</div>
+            <div id='plot21' x='1' y='1' infected='false' data='none' class="box box1">21</div>
+            <div id='plot22' x='2' y='1' infected='false' data='none' class="box box1">22</div>
+            <div id='plot23' x='3' y='1' infected='false' data='none' class="box box1">23</div>
+            <div id='plot24' x='4' y='1' infected='false' data='none' class="box box1">24</div>
+            <div id='plot25' x='5' y='1' infected='false' data='none' class="box box1">25</div>
+
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
 
 
+      <!-- these should be buttons -->
 
-  <script src="https://code.jquery.com/jquery-3.4.0.min.js"
-    integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
-  <script src="assets/javascript/app.js"></script>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        Launch demo modal
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">BioDiversity is Awesome</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Chose a game mode below</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary freestyle" data-dismiss="modal">FreeStyle</button>
+              <button type="button" class="btn btn-primary fiveByFive" data-dismiss="modal">5X5 Challenge</button>
+              <button type="button" class="btn btn-primary fiveByFive" data-dismiss="modal">10X10X5 Challenge</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
+      <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js'></script>
+      <script src="assets/javascript/app.js"></script>
 </body>
 
 </html>

@@ -1,5 +1,10 @@
 
+$(window).on('load', function () {
+    $('#myModal').modal('show');
+});
 //list of perimeter plots that go clockwise around the grid
+
+
 let perimeterPlots = [1, 2, 3, 4, 5, 10, 15, 20, 25, 24, 23, 22, 21, 16, 11, 6]
 let activePerimeterPlot = 0
 let turn = 0
@@ -9,8 +14,6 @@ let gameState = 'planting'
 $(document).ready(function () {
 
     let lastPlantClicked = ''
-
-
 
     //updates plant
     $('body').on('click', '.plants', function () {
@@ -25,21 +28,24 @@ $(document).ready(function () {
         let plantCounter = 0
         let box = $(this).attr('id');
         let planted = $(this).attr('data');
-        console.log(box)
-        console.log(planted)
-        // if ($(this).attr('data') === 'none' && (lastPlantClicked !== '')) {
+
+        //checks to make sure a plant type was selected
         if (lastPlantClicked !== '') {
+            //if the plot already has been assigned, remove the class (color)
             if ($(this).attr('data') !== 'none') {
                 $(this).removeClass($(this).attr('data'))
             }
-            $(this).attr('data', lastPlantClicked)
-
-            $(this).addClass(lastPlantClicked)
-            //  $('#lastSelected').html(lastPlantClicked)
-
-
-            // after all plots are filled, create the infection button
-            //and add it to the screen
+            
+            //sets the data type to the currently selected planting type
+            if(lastPlantClicked !== 'till'){
+                $(this).attr('data', lastPlantClicked)
+                $(this).addClass(lastPlantClicked)
+            }
+            else{
+                $(this).removeClass($(this).attr('data'))
+                $(this).attr('data', 'none')
+            }
+           
 
             for (i = 1; i < 26; i++) {
                 let plotToCheck = '#plot' + i
@@ -104,7 +110,7 @@ $(document).ready(function () {
             $(plot).attr('data', 'none')
             $(plot).attr('infected', 'false')
         }
-        for (i = 0; i < 5; i++) {
+        for (i = 0; i < 6; i++) {
             button = $('<button>')
             button.addClass('btn')
             button.addClass('plants')
@@ -138,6 +144,12 @@ $(document).ready(function () {
                 button.addClass('btn-custom')
                 button.attr('id', 'eggplants')
                 button.html('eggplants')
+                $('#plantSelection2').append(button)
+            }
+            if (i ==5 ) {
+                button.addClass('btn')
+                button.attr('id', 'till')
+                button.html('Till')
                 $('#plantSelection2').append(button)
             }
 
@@ -235,8 +247,6 @@ function endGame() {
     $('#turnCounter').html("your final score: " + points)
     $('#plantSelection').empty()
 
-    //this is not working
-    //see line 88 as well
 
     let replay = $('<button>')
     replay.addClass('btn')
