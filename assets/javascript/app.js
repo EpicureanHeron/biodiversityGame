@@ -38,7 +38,7 @@ function fiveByFiveRules(){
         rulesDict[cropType] += 1
     }
     //takes the last clicked plant, which would be the plant type the user is about to plant
-    // and adds it to the count, to see if it would break the rules
+    // and adds it to the count, to see if it would break the
     rulesDict[lastPlantClicked] += 1
     for (var key in rulesDict) {
         if (rulesDict.hasOwnProperty(key)) {
@@ -56,7 +56,66 @@ function fiveByFiveRules(){
 
 function tenByTenByFiveRules(){
 
-    return True
+    //logic 
+
+    //first check to see if three different crops have been selected
+
+    //second check to see if the distribution is 10, 10, 5
+
+    let rulesDict = {
+        'tomatoes': 0,
+        'corn': 0,
+        'lettuce': 0,
+        'blueberries': 0,
+        'eggplants': 0
+    }
+    let cropList = []
+    let tenSet = []
+
+
+    for (i = 1; i < 26; i++) {
+        let plotToCheck = '#plot' + i
+        let cropType = $(plotToCheck).attr('data')
+        rulesDict[cropType] += 1
+    }
+    rulesDict[lastPlantClicked] += 1
+   // console.log('triggered')
+    for (var key in rulesDict) {
+        if (rulesDict.hasOwnProperty(key)) {
+
+            //this block works for limiting it to three crops
+            if(cropList.length <= 3){
+                if(key !== 'none' && rulesDict[key] > 0){
+                    cropList.push(key)
+                }
+            } 
+            else {
+                return false
+            }
+
+            // this block should evaluate if 10/10/5 has been reached.
+            //the threshold should be once you hit 6, it is considered a tenSet
+            
+            if(rulesDict[key] > 5 && rulesDict[key] < 10 && tenSet.length === 1 && key !== 'none') {
+                tenSet.push(key)
+            }
+
+            if(rulesDict === 11 && key !== 'none'){
+                return false
+            } 
+
+            if (rulesDict === 6 && tenSet.length === 2) {
+                return false
+            }
+            
+
+            
+        }
+        
+    }
+
+
+    return true
 }
 
 let perimeterPlots = [1, 2, 3, 4, 5, 10, 15, 20, 25, 24, 23, 22, 21, 16, 11, 6]
