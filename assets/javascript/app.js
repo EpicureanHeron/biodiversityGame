@@ -22,10 +22,36 @@ function gameModeLogic(){
         default: 
         return True
 }
+}
 
 function fiveByFiveRules(){
-
-    return True
+    let rulesDict = {
+        'tomatoes': 0,
+        'corn': 0,
+        'lettuce': 0,
+        'blueberries': 0,
+        'eggplants': 0
+    }
+    for (i = 1; i < 26; i++) {
+        let plotToCheck = '#plot' + i
+        let cropType = $(plotToCheck).attr('data')
+        rulesDict[cropType] += 1
+    }
+    //takes the last clicked plant, which would be the plant type the user is about to plant
+    // and adds it to the count, to see if it would break the rules
+    rulesDict[lastPlantClicked] += 1
+    for (var key in rulesDict) {
+        if (rulesDict.hasOwnProperty(key)) {
+            if(rulesDict[key] === 6 && key !== 'none'){
+                console.log('attempting to plant too many ' + key)
+                return false
+               
+            }
+        }
+        
+    }
+    return true
+     
 }
 
 function tenByTenByFiveRules(){
@@ -54,11 +80,12 @@ $(document).ready(function () {
     //updates state of plot
     $('body').on('click', '.box', function () {
         let plantCounter = 0
-        //let box = $(this).attr('id');
-        //let planted = $(this).attr('data');
+
+
 
         //checks to make sure a plant type was selected
-        if (lastPlantClicked !== '') {
+        //checks to make sure that game mode logic is being followed
+        if (lastPlantClicked !== '' && gameModeLogic()) {
             //if the plot already has been assigned, remove the class (color)
             if ($(this).attr('data') !== 'none') {
                 $(this).removeClass($(this).attr('data'))
