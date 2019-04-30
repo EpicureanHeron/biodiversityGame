@@ -3,20 +3,48 @@ $(window).on('load', function () {
     $('#myModal').modal('show');
 });
 //list of perimeter plots that go clockwise around the grid
+let gameMode
+$(document).ready(function () {
+    $('body').on('click', '.gameMode', function () {
+        gameMode = $(this).attr('data')
+        
+    })
+})
 
+function gameModeLogic(){
+    switch (gameMode) {
+        case '1':
+        return fiveByFiveRules()
+        
+        case '2':
+        return tenByTenByFiveRules()
+       
+        default: 
+        return True
+}
+
+function fiveByFiveRules(){
+
+    return True
+}
+
+function tenByTenByFiveRules(){
+
+    return True
+}
 
 let perimeterPlots = [1, 2, 3, 4, 5, 10, 15, 20, 25, 24, 23, 22, 21, 16, 11, 6]
 let activePerimeterPlot = 0
 let turn = 0
 const mapping = { 1: 'tomatoes', 2: 'corn', 3: 'lettuce', 4: 'blueberries', 5: 'eggplants', 6: 'wildcard' }
 let gameState = 'planting'
+let lastPlantClicked = ''
 
 $(document).ready(function () {
 
-    let lastPlantClicked = ''
-
     //updates plant
     $('body').on('click', '.plants', function () {
+        console.log(gameMode)
         lastPlantClicked = $(this).attr('id');
         $('#turnCounter').empty()
 
@@ -26,8 +54,8 @@ $(document).ready(function () {
     //updates state of plot
     $('body').on('click', '.box', function () {
         let plantCounter = 0
-        let box = $(this).attr('id');
-        let planted = $(this).attr('data');
+        //let box = $(this).attr('id');
+        //let planted = $(this).attr('data');
 
         //checks to make sure a plant type was selected
         if (lastPlantClicked !== '') {
@@ -35,17 +63,17 @@ $(document).ready(function () {
             if ($(this).attr('data') !== 'none') {
                 $(this).removeClass($(this).attr('data'))
             }
-            
+
             //sets the data type to the currently selected planting type
-            if(lastPlantClicked !== 'till'){
+            if (lastPlantClicked !== 'till') {
                 $(this).attr('data', lastPlantClicked)
                 $(this).addClass(lastPlantClicked)
             }
-            else{
+            else {
                 $(this).removeClass($(this).attr('data'))
                 $(this).attr('data', 'none')
             }
-           
+
 
             for (i = 1; i < 26; i++) {
                 let plotToCheck = '#plot' + i
@@ -57,7 +85,9 @@ $(document).ready(function () {
 
                     gameState = 'infecting'
                     $('#plantSelection').empty()
+                    // $('#plantSelection').addClass('invisible')
                     $('#plantSelection2').empty()
+                    //  $('#plantSelection2').addClass('invisible')
                     $('#lastSelected').html('Selected the Infected button to start the next stage!')
                     let nextTurnButton = $('<button>')
                     nextTurnButton.attr('type', 'button')
@@ -81,9 +111,7 @@ $(document).ready(function () {
         $('#turnCounter').html('Turn: ' + humanTurn)
         var rand = 1 + Math.floor(Math.random() * 6);
         $('#diceRoll').html(rand)
-
         infection(turn)
-        console.log(turn)
         if (turn === 16) {
 
             endGame()
@@ -110,6 +138,10 @@ $(document).ready(function () {
             $(plot).attr('data', 'none')
             $(plot).attr('infected', 'false')
         }
+
+        //could get rid of all of this code by using the classes
+
+        //invisible and visible on the buttons
         for (i = 0; i < 6; i++) {
             button = $('<button>')
             button.addClass('btn')
@@ -146,7 +178,7 @@ $(document).ready(function () {
                 button.html('eggplants')
                 $('#plantSelection2').append(button)
             }
-            if (i ==5 ) {
+            if (i == 5) {
                 button.addClass('btn')
                 button.attr('id', 'till')
                 button.html('Till')
