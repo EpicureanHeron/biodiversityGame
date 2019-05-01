@@ -193,12 +193,29 @@ $(document).ready(function () {
                     nextTurnButton.addClass('btn-primary')
                     nextTurnButton.html('Infect!')
                     $('#plantSelection').append(nextTurnButton)
+
+                    //below cycles through all the plots
+                    //if they are a "perimeter plot" we add the turn # (dictated by the turnCounter )
+                    //otherwise we clear out the html
+                    //let turnCounter = 1
+                    for (i = 1; i < 26; i++) {
+       
+                        let plotToCheck = '#plot' + i
+                    
+                        if(perimeterPlots.includes(i)){
+                            $(plotToCheck).html(perimeterPlots.indexOf(i) + 1)
+                           // turnCounter += 1
+                        }
+                        else{
+                            $(plotToCheck).html('')
+                        }
                 }
 
 
             }
 
         }
+    }
     })
 
     //logic for the infectionBtn
@@ -234,6 +251,12 @@ $(document).ready(function () {
             $(plot).removeClass($(plot).attr('data'))
             $(plot).attr('data', 'none')
             $(plot).attr('infected', 'false')
+            //rewerites the html on each plot
+            $(plot).html(i)
+            //displays modal
+            $('#myModal').modal('show');
+
+
         }
 
         //could get rid of all of this code by using the classes
