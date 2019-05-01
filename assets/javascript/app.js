@@ -22,7 +22,7 @@ function gameModeLogic() {
             return result
 
         default:
-            return True
+            return true
     }
 }
 
