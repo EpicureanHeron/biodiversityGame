@@ -7,24 +7,26 @@ let gameMode
 $(document).ready(function () {
     $('body').on('click', '.gameMode', function () {
         gameMode = $(this).attr('data')
-        
+
     })
 })
 
-function gameModeLogic(){
+function gameModeLogic() {
     switch (gameMode) {
         case '1':
-        return fiveByFiveRules()
-        
+            return fiveByFiveRules()
+
         case '2':
-        return tenByTenByFiveRules()
-       
-        default: 
-        return True
-}
+            let result = tenByTenByFiveRules()
+            console.log(result)
+            return result
+
+        default:
+            return True
+    }
 }
 
-function fiveByFiveRules(){
+function fiveByFiveRules() {
     let rulesDict = {
         'tomatoes': 0,
         'corn': 0,
@@ -42,19 +44,19 @@ function fiveByFiveRules(){
     rulesDict[lastPlantClicked] += 1
     for (var key in rulesDict) {
         if (rulesDict.hasOwnProperty(key)) {
-            if(rulesDict[key] === 6 && key !== 'none'){
+            if (rulesDict[key] === 6 && key !== 'none') {
                 console.log('attempting to plant too many ' + key)
                 return false
-               
+
             }
         }
-        
+
     }
     return true
-     
+
 }
 
-function tenByTenByFiveRules(){
+function tenByTenByFiveRules() {
 
     //logic 
 
@@ -69,6 +71,7 @@ function tenByTenByFiveRules(){
         'blueberries': 0,
         'eggplants': 0
     }
+    // console.log(rulesDict)
     let cropList = []
     let tenSet = []
 
@@ -78,45 +81,53 @@ function tenByTenByFiveRules(){
         let cropType = $(plotToCheck).attr('data')
         rulesDict[cropType] += 1
     }
+
+    //extroplates whatever was clicked last
     rulesDict[lastPlantClicked] += 1
-   // console.log('triggered')
+    //gathers all that are 5 or more
     for (var key in rulesDict) {
         if (rulesDict.hasOwnProperty(key)) {
+            if (rulesDict[key] > 5 && key !== 'none') {
+                console.log(key)
+                tenSet.push(key)
+            }
+        }
+    }
 
-            //this block works for limiting it to three crops
-            if(cropList.length <= 3){
-                if(key !== 'none' && rulesDict[key] > 0){
+//iterates over the keys
+    for (var key in rulesDict) {
+        console.log(key)
+        if (rulesDict.hasOwnProperty(key)) {
+            //enforces the upper limit of crop types
+            if (cropList.length <= 3) {
+                //if greater than zero and not 'none' add it to the cropList
+                if (key !== 'none' && rulesDict[key] > 0) {
                     cropList.push(key)
                 }
-            } 
+            }
+            //if it is greater than 3, cannot add it
             else {
+                console.log('too many crops')
                 return false
             }
 
             // this block should evaluate if 10/10/5 has been reached.
-            //the threshold should be once you hit 6, it is considered a tenSet
-            
-            if(rulesDict[key] > 5 && rulesDict[key] < 10 && tenSet.length === 1 && key !== 'none') {
-                tenSet.push(key)
+            // evaluates if this would be the 11th in a set or if we already would have more than 2 sets greater than five
+            if ((rulesDict[key] >= 11) || (tenSet.length > 2)) {
+                console.log('the 11th or 6th + sets greater than 5')
+                return false
+
             }
 
-            if(rulesDict === 11 && key !== 'none'){
-                return false
-            } 
-
-            if (rulesDict === 6 && tenSet.length === 2) {
-                return false
-            }
-            
-
-            
         }
-        
-    }
 
+    }
 
     return true
 }
+
+
+
 
 let perimeterPlots = [1, 2, 3, 4, 5, 10, 15, 20, 25, 24, 23, 22, 21, 16, 11, 6]
 let activePerimeterPlot = 0
