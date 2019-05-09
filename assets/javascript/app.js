@@ -1,134 +1,4 @@
-
-$(window).on('load', function () {
-    $('#myModal').modal('show');
-});
-//list of perimeter plots that go clockwise around the grid
-let gameMode
-$(document).ready(function () {
-    $('body').on('click', '.gameMode', function () {
-        gameMode = $(this).attr('data')
-
-    })
-})
-
-function gameModeLogic() {
-    switch (gameMode) {
-        case '1':
-            return fiveByFiveRules()
-
-        case '2':
-            let result = tenByTenByFiveRules()
-            console.log(result)
-            return result
-
-        default:
-            return true
-    }
-}
-
-function fiveByFiveRules() {
-    let rulesDict = {
-        'tomatoes': 0,
-        'corn': 0,
-        'lettuce': 0,
-        'blueberries': 0,
-        'eggplants': 0
-    }
-    for (i = 1; i < 26; i++) {
-        let plotToCheck = '#plot' + i
-        let cropType = $(plotToCheck).attr('data')
-        rulesDict[cropType] += 1
-    }
-    //takes the last clicked plant, which would be the plant type the user is about to plant
-    // and adds it to the count, to see if it would break the
-    rulesDict[lastPlantClicked] += 1
-    for (var key in rulesDict) {
-        if (rulesDict.hasOwnProperty(key)) {
-            if (rulesDict[key] === 6 && key !== 'none') {
-                console.log('attempting to plant too many ' + key)
-                return false
-
-            }
-        }
-
-    }
-    return true
-
-}
-
-function tenByTenByFiveRules() {
-
-    //logic 
-
-    //first check to see if three different crops have been selected
-
-    //second check to see if the distribution is 10, 10, 5
-
-    let rulesDict = {
-        'tomatoes': 0,
-        'corn': 0,
-        'lettuce': 0,
-        'blueberries': 0,
-        'eggplants': 0
-    }
-    // console.log(rulesDict)
-    let cropList = []
-    let tenSet = []
-
-
-    for (i = 1; i < 26; i++) {
-        let plotToCheck = '#plot' + i
-        let cropType = $(plotToCheck).attr('data')
-        rulesDict[cropType] += 1
-    }
-
-    //extroplates whatever was clicked last
-    rulesDict[lastPlantClicked] += 1
-    //gathers all that are 5 or more
-    for (var key in rulesDict) {
-        if (rulesDict.hasOwnProperty(key)) {
-            if (rulesDict[key] > 5 && key !== 'none') {
-                console.log(key)
-                tenSet.push(key)
-            }
-        }
-    }
-
-//iterates over the keys
-    for (var key in rulesDict) {
-        console.log(key)
-        if (rulesDict.hasOwnProperty(key)) {
-            //enforces the upper limit of crop types
-            if (cropList.length <= 3) {
-                //if greater than zero and not 'none' add it to the cropList
-                if (key !== 'none' && rulesDict[key] > 0) {
-                    cropList.push(key)
-                }
-            }
-            //if it is greater than 3, cannot add it
-            else {
-                console.log('too many crops')
-                return false
-            }
-
-            // this block should evaluate if 10/10/5 has been reached.
-            // evaluates if this would be the 11th in a set or if we already would have more than 2 sets greater than five
-            if ((rulesDict[key] >= 11) || (tenSet.length > 2)) {
-                console.log('the 11th or 6th + sets greater than 5')
-                return false
-
-            }
-
-        }
-
-    }
-
-    return true
-}
-
-
-
-
+//perimeter plots
 let perimeterPlots = [1, 2, 3, 4, 5, 10, 15, 20, 25, 24, 23, 22, 21, 16, 11, 6]
 let activePerimeterPlot = 0
 let turn = 0
@@ -136,26 +6,30 @@ const mapping = { 1: 'tomatoes', 2: 'corn', 3: 'lettuce', 4: 'blueberries', 5: '
 let gameState = 'planting'
 let lastPlantClicked = ''
 
+//modal appears on page load
+$(window).on('load', function () {
+    $('#myModal').modal('show');
+});
+
+//when the document loads
 $(document).ready(function () {
 
-    //updates plant
+    //updates plant being planted based on button pressed
     $('body').on('click', '.plants', function () {
-        console.log(gameMode)
+
         lastPlantClicked = $(this).attr('id');
         $('#turnCounter').empty()
 
         $('#lastSelected').html('You are planting ' + lastPlantClicked + '.');
     })
 
-    //updates state of plot
+    //updates state of plot based on plant being planted
     $('body').on('click', '.box', function () {
         let plantCounter = 0
 
-
-
         //checks to make sure a plant type was selected
         //checks to make sure that game mode logic is being followed
-        if (lastPlantClicked !== '' && gameModeLogic()) {
+        if (lastPlantClicked !== '' && gameModeLogic(gameMode)) {
             //if the plot already has been assigned, remove the class (color)
             if ($(this).attr('data') !== 'none') {
                 $(this).removeClass($(this).attr('data'))
@@ -199,26 +73,26 @@ $(document).ready(function () {
                     //otherwise we clear out the html
                     //let turnCounter = 1
                     for (i = 1; i < 26; i++) {
-       
+
                         let plotToCheck = '#plot' + i
-                    
-                        if(perimeterPlots.includes(i)){
+
+                        if (perimeterPlots.includes(i)) {
                             $(plotToCheck).html(perimeterPlots.indexOf(i) + 1)
-                           // turnCounter += 1
+                            // turnCounter += 1
                         }
-                        else{
+                        else {
                             $(plotToCheck).html('')
                         }
+                    }
+
+
                 }
 
-
             }
-
         }
-    }
     })
 
-    //logic for the infectionBtn
+    //logic for the infectionBtn 
     $('body').on('click', '#infectionBtn', function () {
 
         humanTurn = turn + 1
@@ -233,7 +107,7 @@ $(document).ready(function () {
 
     })
 
-    //resets the game state
+    //resets the game state graphically.
 
     $('body').on('click', '#replayBtn', function () {
         console.log('this worked!')
@@ -318,13 +192,13 @@ function infection(passedTurn) {
     turn += 1
     //dice roll logic, grabs the veggie type in the mapping established outside of this function
 
-    var rand = 1 + Math.floor(Math.random() * 6);
+    let rand = 1 + Math.floor(Math.random() * 6);
     $('#diceRoll').html('The ' + mapping[rand] + ' virus tries to infect this plot!')
 
-    state = activePerimeterPlot + passedTurn
+    let state = activePerimeterPlot + passedTurn
     //logic to go around the perimeter, this is hardcoded in the perimeterPlot list
     //but probably could be done dynamically if I was more clever
-    activePlot = '#plot' + perimeterPlots[state]
+    let activePlot = '#plot' + perimeterPlots[state]
     $('#lastSelected').html('Active Plot: ' + $(activePlot).attr('data'))
     // removes the active marker from the last plot
     if (passedTurn > 0) {
@@ -383,6 +257,129 @@ function spread(infectedDivID) {
             }
         }
     }
+}
+
+//sets game mode based on button press
+let gameMode
+//
+$(document).ready(function () {
+    $('body').on('click', '.gameMode', function () {
+        gameMode = $(this).attr('data')
+
+    })
+})
+//Core game mode logic, determines type of game to paly
+function gameModeLogic(gameModeVariable) {
+    switch (gameModeVariable) {
+        case '1':
+            return fiveByFiveRules()
+
+        case '2':
+            return tenByTenByFiveRules()
+
+        default:
+            return true
+    }
+}
+
+function fiveByFiveRules() {
+    let rulesDict = {
+        'tomatoes': 0,
+        'corn': 0,
+        'lettuce': 0,
+        'blueberries': 0,
+        'eggplants': 0
+    }
+    for (i = 1; i < 26; i++) {
+        let plotToCheck = '#plot' + i
+        let cropType = $(plotToCheck).attr('data')
+        rulesDict[cropType] += 1
+    }
+    //takes the last clicked plant, which would be the plant type the user is about to plant
+    // and adds it to the count, to see if it would break the
+    rulesDict[lastPlantClicked] += 1
+    for (var key in rulesDict) {
+        if (rulesDict.hasOwnProperty(key)) {
+            if (rulesDict[key] === 6 && key !== 'none') {
+                console.log('attempting to plant too many ' + key)
+                return false
+
+            }
+        }
+
+    }
+    return true
+
+}
+
+function tenByTenByFiveRules() {
+
+    //logic 
+
+    //first check to see if three different crops have been selected
+
+    //second check to see if the distribution is 10, 10, 5
+
+    let rulesDict = {
+        'tomatoes': 0,
+        'corn': 0,
+        'lettuce': 0,
+        'blueberries': 0,
+        'eggplants': 0
+    }
+
+    let cropList = []
+    let tenSet = []
+
+
+    for (i = 1; i < 26; i++) {
+        let plotToCheck = '#plot' + i
+        let cropType = $(plotToCheck).attr('data')
+        rulesDict[cropType] += 1
+    }
+
+    //extroplates whatever was clicked last
+    rulesDict[lastPlantClicked] += 1
+    //gathers all that are 5 or more
+    for (var key in rulesDict) {
+        if (rulesDict.hasOwnProperty(key)) {
+            if (rulesDict[key] > 5 && key !== 'none') {
+
+                tenSet.push(key)
+            }
+        }
+    }
+
+    //iterates over the keys
+    for (var key in rulesDict) {
+
+        if (rulesDict.hasOwnProperty(key)) {
+            //enforces the upper limit of crop types
+            if (cropList.length <= 3) {
+                //if greater than zero and not 'none' add it to the cropList
+                if (key !== 'none' && rulesDict[key] > 0) {
+                    cropList.push(key)
+                }
+            }
+            //if it is greater than 3, cannot add it
+            else {
+
+                return false
+            }
+
+            // this block should evaluate if 10/10/5 has been reached.
+            // evaluates if this would be the 11th in a set or if we already would have more than 2 sets greater than five
+            if ((rulesDict[key] >= 11) || (tenSet.length > 2)) {
+
+                return false
+
+            }
+
+        }
+
+    }
+
+    return true
 }
 
 function endGame() {
